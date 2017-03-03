@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+pip3 install -r requirements.txt
+
 git clone https://github.com/pe2a/MedIOEx
 cd MedIOEx
 tar zxvf bcm2835-1.50.tar.gz
@@ -9,7 +11,6 @@ make
 make check
 make install
 cd ../..
-
 C_CODE_FILES=$(ls -I OKUBENI custom_scripts)
 
 if [ ! -d "bin" ]
