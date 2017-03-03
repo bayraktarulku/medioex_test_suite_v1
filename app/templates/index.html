@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>MedIOEx Test Suite</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+<body>
+	<h1 style="width: 100%; text-align: center;">MedIOEx Test Suite</h1>
+	<div>
+		<h1>Analog Output Write</h1>
+		<form action="http://10.10.18.138:5000/api/ao" method="get">
+			<label for="pin"> PIN =&gt;</label>
+		    <input type="number" name="pin" min="1" max="4" value="1">
+			<label for="val"> VAL =&gt;</label>
+		    <input type="number" name="val" min="0" max="4095" value="0">
+		    <input type="submit" value="WRITE">
+		</form>
+	</div>
+	<div>
+		<h1>Analog Input Read</h1>
+		<form action="http://10.10.18.138:5000/api/ai" method="get">
+			<label for="pin"> PIN =&gt;</label>
+		    <input type="number" name="pin" min="1" max="4" value="1">
+		    <input type="submit" value="READ">
+		</form>
+	</div>
+	<div>
+		<h1>Digital Output Write</h1>
+		<form action="http://10.10.18.138:5000/api/do" method="get">
+			<label for="pin"> PIN =&gt;</label>
+		    <input type="number" name="pin" min="1" max="12" value="1">
+			<label for="val"> VAL =&gt;</label>
+		    <input type="number" name="val" min="0" max="1" value="0">
+		    <input type="submit" value="WRITE">
+		</form>
+	</div>
+	<div>
+		<h1>Digital Input Read</h1>
+		<form action="http://10.10.18.138:5000/api/di" method="get">
+			<label for="pin"> PIN =&gt;</label>
+		    <input type="number" name="pin" min="1" max="12" value="1">
+		    <input type="submit" value="READ">
+		</form>
+	</div>
+	<div>
+		<h1>Relay Output Write</h1>
+		<form action="http://10.10.18.138:5000/api/ro" method="get">
+			<label for="pin"> PIN =&gt;</label>
+		    <input type="number" name="pin" min="1" max="4" value="1">
+			<label for="val"> VAL =&gt;</label>
+		    <input type="number" name="val" min="0" max="1" value="0">
+		    <input type="submit" value="WRITE">
+		</form>
+	</div>
+</body>
+</html>

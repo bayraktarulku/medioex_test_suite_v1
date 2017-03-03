@@ -1,0 +1,18 @@
+Bu dizinde basit IO anahtarlarını kullanabilmeye yarayan kodlar vardır.
+
+Hepsini derleyebilmek için gereken komut şöyledir
+
+gcc -o CIKTI_DOSYASI_ADI KOD_DOSYASI_ADI.c ../MedIOEx/pmedex.c -lbcm2835 -std=gnu11
+
+Burada dikkat edilmesi gereken konu, pmedex.c dosyasının konumu. Bir üst
+dizinde pmedex.c ve pmedex.h dosyaları var. Bu yüzden "../pmedex". Bu
+dosyaların farklı konumları için konum yeniden ayarlanmalı. Kodların içinde bu
+kütüphane aşağıdaki şekilde import ediliyor.
+
+#include "../MedIOEx/pmedex.h"
+
+Bu da relative path. Kütüphanenin farklı konumlarına göre bu satırlar
+değiştirilmeli.
+
+-lbcm2835 kısmı zaten standart. Bu yüzden olduğu gibi bırakılacak.
+

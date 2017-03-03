@@ -1,0 +1,23 @@
+* {
+	font-family: monospace;
+}
+
+body {
+	margin: 0;
+}
+
+
+input[type="number"] {
+	padding: 4px;
+	width: 68px;
+}
+
+div {
+	padding: 16px;
+	border: 1px solid gray;
+	margin: 8px;
+}
+
+h1 {
+	font-size: 24px;	
+}
