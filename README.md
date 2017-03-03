@@ -9,8 +9,8 @@ Here are the steps you should follow to install test suite to your Raspberry Pi:
 
 ```
 # ssh into your Raspberry Pi
-$ git clone https://github.com/nejdetckenobi/medioex_test_suite`
-$ cd medioex_test_suite`
+$ git clone https://github.com/nejdetckenobi/medioex_test_suite
+$ cd medioex_test_suite
 $ sudo su
 root$ bash install.sh
 root$ python3 run.py
