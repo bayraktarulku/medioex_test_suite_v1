@@ -126,3 +126,26 @@ def ao():
         return jsonify({'status': 'ERROR',
                         'message': output})
     return jsonify({'status': 'OK'})
+
+
+@api.route('/temperature', methods=['GET'])
+def get_temperature():
+    p = Popen([os.path.join(IO_BINARY_PATH, 'temp_read')],
+              stdout=PIPE, stderr=PIPE)
+    output = p.communicate()[0]
+    return jsonify({'status': 'OK', 'value': float(output)})
+
+
+@api.route('/close', methods=['GET'])
+def close():
+    for pin in range(1, 5):
+        p = Popen([os.path.join(IO_BINARY_PATH, 'ao_write'), str(pin), '0'],
+                  stdout=PIPE, stderr=PIPE)
+        p.communicate()[0]
+
+    for pin in range(1, 16):
+        p = Popen([os.path.join(IO_BINARY_PATH, 'do_write'), str(pin), '0'],
+                  stdout=PIPE, stderr=PIPE)
+        p.communicate()[0]
+
+    return jsonify({'status': 'OK'})
