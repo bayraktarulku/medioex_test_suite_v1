@@ -13,11 +13,24 @@ input[type="number"] {
 }
 
 div {
-	padding: 16px;
-	border: 1px solid gray;
-	margin: 8px;
+    float: left;
+    width: calc(50% - 46px);
+    padding: 16px;
+    border: 1px solid gray;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+div:nth-child(2n) {
+    margin-left: 8px;
+    margin-right: 4px;
+}
+
+div:nth-child(2n+1) {
+    margin-left: 4px;
+    margin-right: 8px;
 }
 
 h1 {
-	font-size: 24px;	
+	font-size: 24px;
 }
