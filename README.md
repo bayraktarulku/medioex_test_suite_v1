@@ -11,15 +11,21 @@ Here are the steps you should follow to install test suite to your Raspberry Pi:
 # ssh into your Raspberry Pi
 $ git clone https://github.com/nejdetckenobi/medioex_test_suite
 $ cd medioex_test_suite
+$ chmod +x install.sh compile.sh
 $ sudo su
-root$ bash install.sh
+root$ make install
 root$ python3 run.py
 ```
 
-Then go to your browser and type your Raspberry Pi's local IP with port 5000.
-Default username and password are `admin`.
-You can change them from `config.py`
 
+If you want to compile your scripts under `custom_scripts` directory, put your C code there and just type:
+
+```
+root$ make build
+```
+
+Then go to your browser and type your Raspberry Pi's local IP with port 5000.
+(Default username and password are `admin`. You can change them from `config.py`.)
 You'll see the main screen that writes/reads every IO slot.
 Note that even if you stop the server, **output voltages will be active**.
 
