@@ -17,6 +17,8 @@ root$ python3 run.py
 ```
 
 Then go to your browser and type your Raspberry Pi's local IP with port 5000.
+Default username and password are `admin`.
+You can change them from `config.py`
 
 You'll see the main screen that writes/reads every IO slot.
 Note that even if you stop the server, **output voltages will be active**.
