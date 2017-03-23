@@ -1,13 +1,28 @@
 #! /usr/bin/env bash
 
-pip3 install -r requirements.txt
-
-git clone https://github.com/pe2a/MedIOEx
-cd MedIOEx
+# bcm2835 install
+wget https://github.com/pe2a/MedIOEx/blob/master/bcm2835-1.50.tar.gz
 tar zxvf bcm2835-1.50.tar.gz
 cd bcm2835-1.50
 ./configure
 make
 make check
 make install
-cd ../..
+cd ..
+
+# Download a release for medioex
+wget https://github.com/nejdetckenobi/pymedioex/archive/py34.tar.gz
+tar zxvf py34.tar.gz
+cd py34
+python3 setup.py install
+
+# Clone test suite
+git clone https://github.com/nejdetckenobi/medioex_test_suite
+cd medioex_test_suite
+pip3 install -r requirements.txt
+
+# Cleaning up
+rm -rf bcm2835-1.50*
+rm -rf py34*
+
+echo "Done!"
