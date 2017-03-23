@@ -2,6 +2,9 @@
 
 ## Installation
 
+![medioex](https://cloud.githubusercontent.com/assets/4905664/24248008/589a1c9a-0fd6-11e7-810e-7867a606b1c4.gif)
+
+
 Normally, you need to install MedIOEx libs from its original repository which can be found [here](https://github.com/pe2a/MedIOEx).
 But you won't need it because our installation script will do that for you.
 
