@@ -13,7 +13,7 @@ cd ..
 # Download a release for medioex
 wget https://github.com/nejdetckenobi/pymedioex/archive/py34.tar.gz
 tar zxvf py34.tar.gz
-cd py34
+cd pymedioex-py34
 python3 setup.py install
 
 # Clone test suite
@@ -24,5 +24,3 @@ pip3 install -r requirements.txt
 # Cleaning up
 rm -rf bcm2835-1.50*
 rm -rf py34*
-
-echo "Done!"
