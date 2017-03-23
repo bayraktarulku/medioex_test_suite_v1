@@ -11,17 +11,10 @@ Here are the steps you should follow to install test suite to your Raspberry Pi:
 # ssh into your Raspberry Pi
 $ git clone https://github.com/nejdetckenobi/medioex_test_suite
 $ cd medioex_test_suite
-$ chmod +x install.sh compile.sh
+$ chmod +x install.sh
 $ sudo su
-root$ make install
+root$ ./install.sh
 root$ python3 run.py
-```
-
-
-If you want to compile your scripts under `custom_scripts` directory, put your C code there and just type:
-
-```
-root$ make build
 ```
 
 Then go to your browser and type your Raspberry Pi's local IP with port 5000.

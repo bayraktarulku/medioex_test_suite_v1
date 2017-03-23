@@ -1,8 +1,7 @@
 from flask import Blueprint, jsonify, request
-from subprocess import Popen, PIPE
-from config import IO_BINARY_PATH
 from functools import wraps
-import os
+from app.controllers import (do_di_init, ai_init, ao_init, temp_init,
+                             do_write, di_read, ao_write, ai_read, temp_read)
 
 api = Blueprint('api', __name__, url_prefix='/api')
 
@@ -33,15 +32,10 @@ def di():
             'status': 'ERROR',
             'message': 'Digital input pins for MedIOEx must be in [1, 16]'})
 
-    p = Popen([os.path.join(IO_BINARY_PATH, 'di_read'), str(pin)],
-              stdout=PIPE, stderr=PIPE)
-    output = p.communicate()[0]
-    try:
-        return jsonify({'status': 'OK',
-                        'value': int(output)})
-    except:
-        return jsonify({'status': 'ERROR',
-                        'message': output})
+    do_di_init()
+    result = di_read(pin)
+    return jsonify({'status': 'OK',
+                    'value': result})
 
 
 @api.route('/do', methods=['GET'])
@@ -56,12 +50,8 @@ def do():
     elif val not in (0, 1):
         return jsonify({'status': 'ERROR',
                         'message': 'Digital outputs only accept 0 or 1.'})
-    p = Popen([os.path.join(IO_BINARY_PATH, 'do_write'), str(pin), str(val)],
-              stdout=PIPE, stderr=PIPE)
-    output = p.communicate()[0]
-    if output:
-        return jsonify({'status': 'ERROR',
-                        'message': output})
+    do_di_init()
+    do_write(pin, val)
     return jsonify({'status': 'OK'})
 
 
@@ -77,12 +67,9 @@ def ro():
     elif val not in (0, 1):
         return jsonify({'status': 'ERROR',
                         'message': 'Relay outputs only accept 0 or 1.'})
-    p = Popen([os.path.join(IO_BINARY_PATH, 'do_write'), str(pin), str(val)],
-              stdout=PIPE, stderr=PIPE)
-    output = p.communicate()[0]
-    if output:
-        return jsonify({'status': 'ERROR',
-                        'message': output})
+
+    do_di_init()
+    do_write(pin, val)
     return jsonify({'status': 'OK'})
 
 
@@ -94,15 +81,12 @@ def ai():
         return jsonify({
             'status': 'ERROR',
             'message': 'Analog input pins for MedIOEx must be in [1, 4]'})
-    p = Popen([os.path.join(IO_BINARY_PATH, 'ai_read'), str(pin)],
-              stdout=PIPE, stderr=PIPE)
-    output = p.communicate()[0]
-    try:
-        return jsonify({'status': 'OK',
-                        'value': int(output)})
-    except:
-        return jsonify({'status': 'ERROR',
-                        'message': output})
+
+    ai_init()
+    result = ai_read(pin)
+
+    return jsonify({'status': 'OK',
+                    'value': result})
 
 
 @api.route('/ao', methods=['GET'])
@@ -119,33 +103,26 @@ def ao():
             'status': 'ERROR',
             'message': 'Analog outputs accept between 0 and 4095.'})
 
-    p = Popen([os.path.join(IO_BINARY_PATH, 'ao_write'), str(pin), str(val)],
-              stdout=PIPE, stderr=PIPE)
-    output = p.communicate()[0]
-    if output:
-        return jsonify({'status': 'ERROR',
-                        'message': output})
+    ao_init()
+    ao_write(pin, val)
     return jsonify({'status': 'OK'})
 
 
 @api.route('/temperature', methods=['GET'])
 def get_temperature():
-    p = Popen([os.path.join(IO_BINARY_PATH, 'temp_read')],
-              stdout=PIPE, stderr=PIPE)
-    output = p.communicate()[0]
-    return jsonify({'status': 'OK', 'value': float(output)})
+    temp_init()
+    result = temp_read(1)
+    return jsonify({'status': 'OK', 'value': result})
 
 
 @api.route('/close', methods=['GET'])
 def close():
+    ao_init()
     for pin in range(1, 5):
-        p = Popen([os.path.join(IO_BINARY_PATH, 'ao_write'), str(pin), '0'],
-                  stdout=PIPE, stderr=PIPE)
-        p.communicate()[0]
+        ao_write(pin, 0)
 
+    do_di_init()
     for pin in range(1, 16):
-        p = Popen([os.path.join(IO_BINARY_PATH, 'do_write'), str(pin), '0'],
-                  stdout=PIPE, stderr=PIPE)
-        p.communicate()[0]
+        do_write(pin, 0)
 
     return jsonify({'status': 'OK'})
