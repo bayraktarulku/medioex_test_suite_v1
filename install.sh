@@ -23,3 +23,4 @@ cd ..
 # Cleaning up
 rm -rf bcm2835-1.50*
 rm -rf pymedioex-py*
+rm py34.tar.gz
