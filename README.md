@@ -26,3 +26,8 @@ You'll see the main screen that writes/reads every IO slot.
 Note that even if you stop the server, **output voltages will be active**.
 
 So for your own safety, write 0 to every possible output slot (especially for relay slots).
+
+To use the Python3 extension for MedIOEx, you can use the links below. 
+
+https://github.com/bayraktarulku/pymedioex
+https://github.com/nejdetckenobi/pymedioex
