@@ -11,16 +11,14 @@ make check
 make install
 cd ..
 
-# Download a release for medioex
-wget https://github.com/nejdetckenobi/pymedioex/archive/py34.tar.gz
-tar zxvf py34.tar.gz
+# Download the library for medioex library
+git clone https://github.com/nejdetckenobi/pymedioex
 
-cd pymedioex-py34
+cd pymedioex
 python3 setup.py install
 cd ../medioex_test_suite
 pip3 install -r requirements.txt
 cd ..
 # Cleaning up
 rm -rf bcm2835-1.50*
-rm -rf pymedioex-py*
-rm py34.tar.gz
+rm -rf pymedioex
